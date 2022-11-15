@@ -27,7 +27,7 @@ def main():
 
     cmd = f'PYTHONPATH=src/ radish --syslog -t -b ./steps -b {AcrePath.steps()} {userdata} {" ".join(options)}'
     log.info(f"running: {cmd}")
-    log.info(f"display is: {os.environ['DISPLAY']}")
+    os.environ['DISPLAY'] = ":99.0"
     os.system(cmd)
 
 
