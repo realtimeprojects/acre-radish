@@ -9,6 +9,7 @@ from acre.path import AcrePath
 def main():
     """ invoke a test run """
 
+    log.basicConfig(level=log.DEBUG)
     log.debug(f"arguments: {sys.argv}")
 
     userdata = _read_userdata()
