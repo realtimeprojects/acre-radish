@@ -1,6 +1,7 @@
 import re
 import os
 import sys
+import argparse
 import logging as log
 
 from acre.path import AcrePath
@@ -9,12 +10,22 @@ from acre.path import AcrePath
 def main():
     """ invoke a test run """
 
+    parser = argparse.ArgumentParser(description="radish-run <arguments>", usage=__doc__)
+    parser.add_argument('--upgrade',
+                        help="update dependencies according to the project's etc/requirements.txt",
+                        action="store_true")
+    (myargs, options) = parser.parse_known_args()
+
     log.basicConfig(level=log.DEBUG)
-    log.debug(f"arguments: {sys.argv}")
+    log.debug(f"arguments: {options}")
 
     userdata = _read_userdata()
 
-    cmd = f'PYTHONPATH=src/ radish -t -b ./steps -b {AcrePath.steps()} {userdata} {" ".join(sys.argv[1:])}'
+    if myargs.upgrade:
+        cmd = "pip3 install --upgrade etc/requirements.txt"
+        os.system(cmd)
+
+    cmd = f'PYTHONPATH=src/ radish -t -b ./steps -b {AcrePath.steps()} {userdata} {" ".join(options)}'
     log.info(f"running: {cmd}")
     os.system(cmd)
 
