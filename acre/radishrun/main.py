@@ -3,7 +3,7 @@ import os
 import sys
 import logging as log
 
-from acre.tools import AcrePath
+from acre.path import AcrePath
 
 
 def main():
