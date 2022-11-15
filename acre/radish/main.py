@@ -3,17 +3,17 @@ import os
 import sys
 import logging as log
 
+from acre.tools import AcrePath
+
 
 def main():
     """ invoke a test run """
-
-    from acre.lib import path
 
     log.debug(f"arguments: {sys.argv}")
 
     userdata = _read_userdata()
 
-    cmd = f'PYTHONPATH=src/ radish -b ./steps -b {path.get("steps")} {userdata} {" ".join(sys.argv[1:])}'
+    cmd = f'PYTHONPATH=src/ radish -b ./steps -b {AcrePath.steps()} {userdata} {" ".join(sys.argv[1:])}'
     os.system(cmd)
 
 
