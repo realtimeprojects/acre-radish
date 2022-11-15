@@ -14,7 +14,7 @@ def main():
 
     userdata = _read_userdata()
 
-    cmd = f'PYTHONPATH=src/ radish -b ./steps -b {AcrePath.steps()} {userdata} {" ".join(sys.argv[1:])}'
+    cmd = f'PYTHONPATH=src/ radish -t -b ./steps -b {AcrePath.steps()} {userdata} {" ".join(sys.argv[1:])}'
     log.info(f"running: {cmd}")
     os.system(cmd)
 
