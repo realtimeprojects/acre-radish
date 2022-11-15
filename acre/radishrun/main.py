@@ -25,7 +25,7 @@ def main():
         cmd = "pip3 install --upgrade -r etc/requirements.txt"
         os.system(cmd)
 
-    cmd = f'PYTHONPATH=src/ radish --syslog -t -b ./steps -b {AcrePath.steps()} {userdata} {" ".join(options)}'
+    cmd = f'PYTHONPATH=src/ radish -t -b ./steps -b {AcrePath.steps()} {userdata} {" ".join(options)}'
     log.info(f"running: {cmd}")
     os.environ['DISPLAY'] = ":99.0"
     os.system(cmd)
