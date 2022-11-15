@@ -22,7 +22,7 @@ def main():
     userdata = _read_userdata()
 
     if myargs.upgrade:
-        cmd = "pip3 install --upgrade etc/requirements.txt"
+        cmd = "pip3 install --upgrade -r etc/requirements.txt"
         os.system(cmd)
 
     cmd = f'PYTHONPATH=src/ radish -t -b ./steps -b {AcrePath.steps()} {userdata} {" ".join(options)}'
